@@ -1,0 +1,6 @@
+{
+    "token": "token du bot",
+    "server": "ip du serveur a ping", 
+    "port": "port du serveur a ping",
+    "channel": "channel où sera envoyé les resultats "
+}
