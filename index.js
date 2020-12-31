@@ -13,9 +13,9 @@ client.on('ready', () => {
     let addr = config.server,
     port = config.port;
     let ping = new MessageEmbed()
-    .setTitle(`Ping`)
+    .setTitle(`🔍 Ping en cours...`)
     .setColor(`ORANGE`)
-    .addField(addr, `pinging`)
+    .setDescription(addr)
     client.channels.resolve(config.channel).send(ping)
     .then(msg => {
         setInterval(() => {
@@ -24,18 +24,18 @@ client.on('ready', () => {
                     tcpp.ping({ address: addr, port: port }, function(err, data) {
                         console.log(data);
                         let ping = new MessageEmbed()
-                        .setTitle(`NODE JEUX`)
+                        .setTitle(`✅ Le serveur est actuellement en ligne`)
                         .setColor(`GREEN`)
-                        .addField(Math.floor(data.avg) + `ms`, `Le serveur est actuellement en ligne`)
-                        .setFooter(`Dernière actualisation ${new Date().toLocaleString("fr-FR", {timeZone: "Europe/Paris"}).split(',')[0]} | powered by Linetim.fr`)
+                        .addField("📍 Le ping est de :", Math.floor(data.avg) + `ms` )
+                        .setFooter(`🕓 Dernière actualisation ${new Date().toLocaleString("fr-FR", {timeZone: "Europe/Paris"}).split(',')[0]}`)
                         msg.edit(ping)
                     });
                 } else {
                     let ping = new MessageEmbed()
-                    .setTitle(`NODE JEUX`)
+                    .setTitle(`📍 Oups...`)
                     .setColor(`RED`)
-                    .addField(`->`, `down`)
-                    .setFooter(`Dernière actualisation ${new Date().toLocaleString("fr-FR", {timeZone: "Europe/Paris"}).split(',')[0]} | powered by Linetim.fr`)
+                    .setDescription('⚠️ Le serveur semble down...')
+                    .setFooter(`🕓 Dernière actualisation ${new Date().toLocaleString("fr-FR", {timeZone: "Europe/Paris"}).split(',')[0]}`)
                     msg.edit(ping)
                 }
             })
